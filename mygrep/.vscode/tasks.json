@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "g++ mygrep.cpp -fsanitize=address,undefined,leak -Werror -Wformat -std=c++11 -g",
+            "command": "g++ mygrep.cpp -std=c++11 -fsanitize=address,undefined,leak -Werror -Wformat  -g",
             "problemMatcher": [
                 "$gcc"
             ]

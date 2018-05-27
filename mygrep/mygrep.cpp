@@ -31,14 +31,12 @@ void pre(const string &s) {
 		hash = (hash * p + s[i]) % mod;
 		deg = (deg * p) % mod;
 	}
-	//fprintf(stderr, "Hash: %lld\n", hash);
 }
 int ask(int where) {
 	return where * BUFFER_SIZE;
 } 
 
 int read_file(const string &file) {
-	//fprintf(stderr, "Reading %s\n", file.c_str());
 	int fd = open(file.c_str(), 0, O_RDONLY);
 	if (fd < 0) {
 		fprintf(stderr, "Cannot open file: %s\n", file.c_str());
@@ -76,8 +74,6 @@ void push_dir(struct stat &st) {
 }
 
 void walk(string &path) {
-	//fprintf(stderr, "Entering %s\n", path.c_str());
-
 	DIR *at;
     dirent *entry;
 	
