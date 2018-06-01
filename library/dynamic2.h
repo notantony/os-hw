@@ -1,0 +1,1 @@
+void dynamic2_hello(const char *name);

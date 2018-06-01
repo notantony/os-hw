@@ -1,0 +1,1 @@
+void static_hello(const char *name);
