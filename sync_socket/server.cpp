@@ -36,9 +36,17 @@ int main(int argc, char **argv) {
 	}
 	printf("Server started\n");
 
-	ssize_t len;
+
+	ssize_t clen;
 	while (1) {
-		if ((len = recvfrom(st, buffer, BUF_SIZE, 0, NULL, NULL)) < 0) {
+		ssize_t len = 0;
+		int flag = 0;
+		while ((clen = recvfrom(st, buffer + len, BUF_SIZE - len - 1, MSG_DONTWAIT * flag, NULL, NULL)) > 0) {
+			flag = 1;
+			fprintf(stderr, "Received %ld bytes\n", clen);	
+			len += clen;	
+		}
+		if (clen < 0 && errno != EAGAIN && errno != EWOULDBLOCK) {
 			fprintf(stderr, "Error while receiving message, error code: %d\n", errno);
 			continue;
 		}

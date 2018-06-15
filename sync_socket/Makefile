@@ -1,4 +1,4 @@
-.PHONY: clear all run_client run_server
+.PHONY: clean all
 COMPILER = g++ -std=c++11 -fsanitize=address,undefined,leak -Werror -Wformat
 
 server: server.cpp

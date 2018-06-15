@@ -27,10 +27,19 @@ int main(int argc, char **argv) {
 	}
 	server.sa_family = AF_UNIX;
 	strcpy(server.sa_data, argv[1]);
-    while(scanf("%s", buffer) != EOF) {
-        if (sendto(st, buffer, strlen(buffer), 0, &server, sizeof(server.sa_family) + strlen(server.sa_data)) == -1) {
-            fprintf(stderr, "Error while sending message, error code: %d\n", errno);
-        }
+	ssize_t len;
+	ssize_t clen, msg_len;
+    while (scanf("%s", buffer) != EOF) {
+		msg_len = strlen(buffer);
+		len = 0;
+		while (len < msg_len) {
+			clen = sendto(st, buffer + len, msg_len - len, 0, &server, sizeof(server.sa_family) + strlen(server.sa_data));
+			if (clen == -1) {
+				fprintf(stderr, "Error while sending message, error code: %d\n", errno);
+				break;
+			}
+			len += clen;
+		}
     }
     return 0;
 }
