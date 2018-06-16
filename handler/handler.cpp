@@ -9,6 +9,7 @@
 #include <sys/mman.h>
 #include <sys/types.h>
 #include <cstring>
+#include <ucontext.h>
 
 const int REG = 0, MEM = 1, FAIL = -1;
 const signed long REGION_SIZE = 5; // shouldn't be too big
