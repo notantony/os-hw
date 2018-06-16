@@ -76,7 +76,7 @@ void my_handler(int signum, siginfo_t *siginfo, void *context) {
 
     switch (status) {
         case REG: {
-            struct ucontext *uct = (ucontext_t *) context;
+            ucontext *uct = (ucontext_t *) context;
             my_write("SIGSEGV received, address: ");
             write_ul(address);
             my_write("\nRegisters:\n");
